@@ -18,5 +18,17 @@
     <ClCompile Include="bj-2745.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="bj-2903.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="bj-11005.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="bj-2501.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="bj.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
