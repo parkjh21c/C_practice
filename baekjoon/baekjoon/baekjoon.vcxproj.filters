@@ -27,7 +27,7 @@
     <ClCompile Include="bj-2501.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="bj.c">
+    <ClCompile Include="bj-9506.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
