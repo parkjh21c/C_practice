@@ -9,5 +9,6 @@ int main() {
 	printf("%ld", n * 4);
 
 
+
 	return 0;
 }
