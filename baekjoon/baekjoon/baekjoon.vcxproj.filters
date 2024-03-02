@@ -33,7 +33,16 @@
     <ClCompile Include="bj-27323.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="bj.c">
+    <ClCompile Include="bj-15894.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="bj-9063.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="bj-10101.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="bj-5073.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
