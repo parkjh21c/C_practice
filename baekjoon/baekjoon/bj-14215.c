@@ -1,7 +1,6 @@
 #pragma warning(disable:4996)
 #include <stdio.h>
 
-// 14215 ¹ø
 int main() {
 	int num[3], max_index;
 
