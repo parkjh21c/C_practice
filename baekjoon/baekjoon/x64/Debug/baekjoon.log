@@ -1,3 +1,2 @@
-﻿  bj.c
-C:\Users\qkrwl\C_practice\baekjoon\baekjoon\bj.c(6,14): warning C4101: 'max_index' :참조되지 않은 지역 변수입니다.
+﻿  bj-10101.c
   baekjoon.vcxproj -> C:\Users\qkrwl\C_practice\baekjoon\x64\Debug\baekjoon.exe
