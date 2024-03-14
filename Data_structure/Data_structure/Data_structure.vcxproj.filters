@@ -13,31 +13,58 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="소스 파일\week1">
+      <UniqueIdentifier>{e532cb49-32af-4f37-9386-984fb0c15b50}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\week2">
+      <UniqueIdentifier>{35968ec9-1f1d-4593-93bb-87af6e24d8cd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="week1-8.c">
+      <Filter>소스 파일\week1</Filter>
+    </ClCompile>
     <ClCompile Include="week1-1.c">
-      <Filter>소스 파일</Filter>
+      <Filter>소스 파일\week1</Filter>
     </ClCompile>
     <ClCompile Include="week1-2.c">
-      <Filter>소스 파일</Filter>
+      <Filter>소스 파일\week1</Filter>
     </ClCompile>
     <ClCompile Include="week1-3.c">
-      <Filter>소스 파일</Filter>
+      <Filter>소스 파일\week1</Filter>
     </ClCompile>
     <ClCompile Include="week1-4.c">
-      <Filter>소스 파일</Filter>
+      <Filter>소스 파일\week1</Filter>
     </ClCompile>
     <ClCompile Include="week1-5.c">
-      <Filter>소스 파일</Filter>
+      <Filter>소스 파일\week1</Filter>
     </ClCompile>
     <ClCompile Include="week1-6.c">
-      <Filter>소스 파일</Filter>
+      <Filter>소스 파일\week1</Filter>
     </ClCompile>
     <ClCompile Include="week1-7.c">
-      <Filter>소스 파일</Filter>
+      <Filter>소스 파일\week1</Filter>
     </ClCompile>
-    <ClCompile Include="week1-8.c">
-      <Filter>소스 파일</Filter>
+    <ClCompile Include="findMatrix.c">
+      <Filter>소스 파일\week2</Filter>
+    </ClCompile>
+    <ClCompile Include="bitMatrix.c">
+      <Filter>소스 파일\week2</Filter>
+    </ClCompile>
+    <ClCompile Include="week2%28ver1%29.c">
+      <Filter>소스 파일\week2</Filter>
+    </ClCompile>
+    <ClCompile Include="week2(ver2).c">
+      <Filter>소스 파일\week2</Filter>
+    </ClCompile>
+    <ClCompile Include="week2-2.c">
+      <Filter>소스 파일\week2</Filter>
+    </ClCompile>
+    <ClCompile Include="week2-%283-1%29.c">
+      <Filter>소스 파일\week2</Filter>
+    </ClCompile>
+    <ClCompile Include="week2-(3-2).c">
+      <Filter>소스 파일\week2</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
