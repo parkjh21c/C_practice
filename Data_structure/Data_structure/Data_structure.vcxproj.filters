@@ -66,5 +66,8 @@
     <ClCompile Include="week2-(3-2).c">
       <Filter>소스 파일\week2</Filter>
     </ClCompile>
+    <ClCompile Include="week2-1.c">
+      <Filter>소스 파일\week2</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
