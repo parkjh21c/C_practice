@@ -32,6 +32,7 @@ int main() {
 
 	printf("%d - %d", mrFib(n, Fib), count);
 	
+	free(Fib);
 
 	return 0;
 }
