@@ -3,8 +3,9 @@
 #include <stdlib.h>
 
 int max_s(int* s, int n) {
-	
-	
+	if (n == 1) 
+		return s[n - 1];
+	return (max_s(s, n - 1) > s[n - 1]) ? (max_s(s, n - 1)) : (s[n - 1]);
 }
 
 int main() {
