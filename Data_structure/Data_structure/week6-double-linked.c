@@ -85,6 +85,81 @@ void insert(DListType* DL, int pos, element e) {
 }
 
 // delete함수는 만들어 볼 것
+// 삭제 후 노드가 없다면 => init 함수 호출 필요
+element deleteFirst(DListType* DL) {
+	if (isEmpty(DL)) {
+		printf("No Element To Delete.\n");
+		return -1;
+	}
+	
+	DListNode* p = DL->H;
+	element e = p->data;
+	DL->H = p->next;
+	p->next->prev = NULL;
+	free(p);
+
+	DL->count--;
+
+	if (isEmpty(DL))
+		init(DL);
+
+	return e;
+}
+
+element deleteLast(DListType* DL) {
+	if (isEmpty(DL)) {
+		printf("No Element To Delete.\n");
+		return -1;
+	}
+
+	DListNode* p = DL->T;
+	element e = p->data;
+	DL->T = p->prev;
+	p->prev->next = NULL;
+	free(p);
+
+	DL->count--;
+
+	if (isEmpty(DL))
+		init(DL);
+
+	return e;
+}
+
+element delete(DListType* DL, int pos) {
+	if (isEmpty(DL)) {
+		printf("No Element To Delete.\n");
+		return -1;
+	}
+	else if (pos < 1 || pos > DL->count) {
+		printf("Invalid Position.\n");
+		return -1;
+	}
+	else {
+		DListNode* p = DL->H;
+		element e;
+
+		if (pos == 1)
+			e = deleteFirst(DL);
+		else if (pos == DL->count)
+			e = deleteLast(DL);
+		else {
+			for (int i = 1; i < pos; i++)
+				p = p->next;
+
+			e = p->data;
+			p->next->prev = p->prev;
+			p->prev->next = p->next;
+			free(p);
+
+			DL->count--;
+		}
+		if (isEmpty(DL))
+			init(DL);
+
+		return e;
+	}
+}
 
 void print(DListType* DL) {
 	for (DListNode* p = DL->H; p != NULL; p = p->next)
@@ -106,7 +181,16 @@ int main() {
 
 	insert(&DL, 1, 70); print(&DL);
 	insert(&DL, DL.count + 1, 100); print(&DL);
-	insert(&DL, 3, 110); print(&DL);
+	insert(&DL, 3, 110); print(&DL); getchar();
+
+	deleteFirst(&DL); print(&DL);
+	deleteFirst(&DL); print(&DL);
+
+	deleteLast(&DL); print(&DL);
+	deleteLast(&DL); print(&DL); getchar();
+
+	delete(&DL, 3); print(&DL);
+	delete(&DL, 2); print(&DL);
 
 	return 0;
 }
