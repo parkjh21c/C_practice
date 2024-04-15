@@ -94,14 +94,19 @@ element deleteFirst(DListType* DL) {
 	
 	DListNode* p = DL->H;
 	element e = p->data;
-	DL->H = p->next;
-	p->next->prev = NULL;
+
+	if (p->next != NULL) {
+		DL->H = p->next;
+		p->next->prev = NULL;
+
+	}
+	else {
+		init(DL);
+		return e;
+	}
 	free(p);
 
 	DL->count--;
-
-	if (isEmpty(DL))
-		init(DL);
 
 	return e;
 }
@@ -114,14 +119,18 @@ element deleteLast(DListType* DL) {
 
 	DListNode* p = DL->T;
 	element e = p->data;
-	DL->T = p->prev;
-	p->prev->next = NULL;
+
+	if (p->prev != NULL) {
+		DL->T = p->prev;
+		p->prev->next = NULL;
+	}
+	else {
+		init(DL);
+		return e;
+	}
 	free(p);
 
 	DL->count--;
-
-	if (isEmpty(DL))
-		init(DL);
 
 	return e;
 }
@@ -141,22 +150,25 @@ element delete(DListType* DL, int pos) {
 
 		if (pos == 1)
 			e = deleteFirst(DL);
-		else if (pos == DL->count)
-			e = deleteLast(DL);
+		// else if (DL->count == pos)
+		//	e = deleteLast(DL);
 		else {
 			for (int i = 1; i < pos; i++)
 				p = p->next;
 
+			if (p->next != NULL) {
+				p->next->prev = p->prev;
+				p->prev->next = p->next;
+			}
+			else {
+				p->prev->next = NULL;
+				DL->T = p->prev;
+			}
 			e = p->data;
-			p->next->prev = p->prev;
-			p->prev->next = p->next;
 			free(p);
 
 			DL->count--;
 		}
-		if (isEmpty(DL))
-			init(DL);
-
 		return e;
 	}
 }
@@ -172,6 +184,8 @@ int main() {
 	init(&DL);
 
 	insertFirst(&DL, 20); print(&DL);
+	printf("[%d] is deleted\n", deleteFirst(&DL)); print(&DL);
+	insertLast(&DL, 99); print(&DL);
 	insertFirst(&DL, 10); print(&DL);
 	insertFirst(&DL, 30); print(&DL); getchar();
 
@@ -183,14 +197,15 @@ int main() {
 	insert(&DL, DL.count + 1, 100); print(&DL);
 	insert(&DL, 3, 110); print(&DL); getchar();
 
-	deleteFirst(&DL); print(&DL);
-	deleteFirst(&DL); print(&DL);
+	printf("[%d] is deleted.\n", deleteFirst(&DL)); print(&DL);
+	printf("[%d] is deleted.\n", deleteFirst(&DL)); print(&DL);
 
-	deleteLast(&DL); print(&DL);
-	deleteLast(&DL); print(&DL); getchar();
+	printf("[%d] is deleted.\n",deleteLast(&DL)); print(&DL);
+	printf("[%d] is deleted.\n", deleteLast(&DL)); print(&DL); getchar();
 
-	delete(&DL, 3); print(&DL);
-	delete(&DL, 2); print(&DL);
+	printf("[%d] is deleted.\n", delete(&DL, 3)); print(&DL);
+	printf("[%d] is deleted.\n", delete(&DL, 4)); print(&DL);
+	printf("[%d] is deleted.\n", deleteLast(&DL)); print(&DL);
 
 	return 0;
 }

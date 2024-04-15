@@ -37,13 +37,14 @@ void insert(DListNode* H, int pos, element e) {
 element delete(DListNode* H, int pos) {
 	DListNode* p = H;
 
-	for (int i = 1; i <= pos; i++)
+	for (int i = 1; i <= pos; i++) // 삭제 되는 노드
 		p = p->next;
 
 	element e = p->data;
 
 	p->prev->next = p->next;
 	p->next->prev = p->prev;
+
 	free(p);
 
 	return e;
@@ -68,10 +69,10 @@ int main() {
 	insert(H, 4, 50); print(H, T);
 	insert(H, 2, 90); print(H, T);
 
-	delete(H, 5); print(H, T);
-	delete(H, 1); print(H, T);
-	delete(H, 2); print(H, T);
-	delete(H, 2); print(H, T);
+	printf("[%d] is deleted.\n", delete(H, 5)); print(H, T);
+	printf("[%d] is deleted.\n", delete(H, 3)); print(H, T);
+	printf("[%d] is deleted.\n", delete(H, 4)); print(H, T);
+	printf("[%d] is deleted.\n", delete(H, 3)); print(H, T);
 
 
 	return 0;
