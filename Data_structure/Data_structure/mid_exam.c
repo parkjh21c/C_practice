@@ -69,10 +69,20 @@ void Union(ListType* L1, ListType* L2, ListType* L3) {
 }
 
 void Difference(ListType* L1, ListType* L2, ListType* L3) {
-	ListNode* p = L1->H, * q = L2->H;
-	L3->H->next = p->next;
+	ListNode* p = L1->H, * q = L2->H, * z;
 
-
+	for (p = L1->H; p != NULL; p = p->next) {
+		for (q = L2->H->next; q != NULL; q = q->next) {
+			if (p->next->data == q->data) {
+				z = p;
+				p = p->next;
+				z->next = p->next;
+				free(p);
+				p = z;
+			}
+		}
+	}
+	L3->H->next = L1->H->next;
 
 }
 
@@ -110,7 +120,9 @@ int main() {
 	print(&L3);
 
 	init(&L3);
-
+	Difference(&L1, &L2, &L3);
+	printf("Diff = ");
+	print(&L3);
 
 
 	return 0;
