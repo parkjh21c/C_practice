@@ -1,54 +1,44 @@
 #pragma warning(disable:4996)
 #include <stdio.h>
-#include <string.h>
 #include <stdlib.h>
+#include <string.h>
 
-// 1181번 문제
+void input(char** ch, int i) {
+	char tmp[501];
+	scanf("%s", tmp);
+	ch[i] = (char*)malloc((strlen(tmp) + 1) * sizeof(char));
+
+	strcpy(ch[i], tmp);
+}
+
+int cmp(char** A, char* B, int size_A) {
+	int count = 0;
+
+	for (int i = 0; i < size_A; i++) 
+		if (strcmp(A[i], B) == 0) 
+			return 1;
+
+	return 0;
+}
 
 int main() {
-	int N;
-	char** word = NULL;
+	int N, M, count = 0;
+	char** ch_N;
 
-	scanf("%d", &N);
+	scanf("%d %d", &N, &M);
 
-	word = (char**)malloc(N * sizeof(char*));
-	if (word == NULL) return -1;
+	ch_N = (char**)malloc(N * sizeof(char*));
 
-	// 입력받기
-	for (int i = 0; i < N; i++) {
-		char ch[50];
-		scanf("%s", ch);
+	for (int i = 0; i < N; i++) 
+		input(ch_N, i);
 
-		word[i] = (char*)malloc((strlen(ch) + 1) * sizeof(char));
-		if (word[i] == NULL) return -1;
-
-		strcpy(word[i], ch);
-
+	for (int i = 0; i < M; i++) {
+		char tmp[500];
+		scanf("%s", tmp);
+		count += cmp(ch_N, tmp, N);
 	}
-
-	for (int i = 0; i < N - 1; i++) {
-		int len = strlen(word[i]);
-		for (int j = i + 1; j < N; j++) {
-			// 길이가 짧을 때
-			if (len > strlen(word[j])) {
-
-			}
-			// 길이가 같을 때
-			else if (len == strlen(word[j])) {
-
-			}
-		}
-	}
-
-
-	for (int i = 0; i < N; i++)
-		printf("%s\n", word[i]);
-
-	// swap 함수 만들고 조건에 맞춰 정렬
-
-	// 중복단어는 출력할 때 건너 뛰는 방식으로 출력
-
-
+	
+	printf("%d", count);
 
 	return 0;
 }
