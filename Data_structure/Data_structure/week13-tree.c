@@ -68,16 +68,17 @@ int depth(TreeNode* node) {
 }
 
 int isExternal(TreeNode* node) {
-
+	return (node->left == NULL) && (node->right == NULL);
 }
 
 int height(TreeNode* node) {
 	if (isExternal(node))
 		return 0;
 	else {
-		int h = max(height(node->left)), height(node->right))
+		int h;
+		h = max(height(node->left), height(node->right));
+		return 1 + h;
 	}
-		
 }
 
 void inOrder(TreeNode* node) {
@@ -143,6 +144,8 @@ int main() {
 	printf("Post : "); postOrder(n1); printf("\n");
 
 	printf("Level : "); levelOrder(n1); printf("\n");
+
+	printf("%d %d", depth(n1), height(n1));
 
 	return 0;
 }
