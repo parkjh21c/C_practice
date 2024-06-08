@@ -135,9 +135,9 @@ int main() {
 	tree = findId(F1, id);
 	if (tree == NULL)
 		printf("-1");
-
-	sumpreOrder(tree, &total);
-	printf("%d", total);
-
+	else {
+		sumpreOrder(tree, &total);
+		printf("%d", total);
+	}
 	return 0;
 }
