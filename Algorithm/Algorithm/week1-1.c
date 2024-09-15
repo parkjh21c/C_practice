@@ -73,13 +73,24 @@ void delete(TypeNode* Tn, int pos) {
 		p->next->prev = q;
 
 		free(p);
+
+		Tn->length--;
 	}
 	else
 		printf("invalid position\n");
 }
 
 void get_entry(TypeNode* Tn, int pos) {
+	if (Tn->length >= pos) {
+		Node* p = Tn->H;
 
+		for (int i = 1; i <= pos; i++)
+			p = p->next;
+
+		printf("%c\n", p->e);
+	}
+	else
+		printf("invalid position\n");
 }
 
 void print(TypeNode* Tn) {
@@ -98,13 +109,33 @@ int main() {
 	int N;
 	scanf("%d", &N); getchar();
 	
-	for (int i = 1; i < N; i++) {
-		element e;
-		scanf("%c", &e); getchar();
-		add(&Tn, i, e);
-	}
+	for (int i = 0; i < N; i++) {
+		char def;
 
-	print(&Tn);
+		scanf("%c", &def);
+		
+		if (def == 'A') {
+			int pos;
+			element e;
+			scanf("%d %c", &pos, &e); getchar();
+			add(&Tn, pos, e);
+		}
+		else if (def == 'D') {
+			int pos;
+			scanf("%d", &pos); getchar();
+			delete(&Tn, pos);
+		}
+		else if (def == 'G') {
+			int pos;
+			scanf("%d", &pos); getchar();
+			get_entry(&Tn, pos);
+		}
+		else if (def == 'P') {
+			getchar();
+			print(&Tn);
+		}
+		printf("%d", i);
+	}
 
 	return 0;
 }
