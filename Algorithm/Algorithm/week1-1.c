@@ -134,7 +134,6 @@ int main() {
 			getchar();
 			print(&Tn);
 		}
-		printf("%d", i);
 	}
 
 	return 0;

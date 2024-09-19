@@ -19,11 +19,20 @@ TreeNode* makeNode(element id, TreeNode* left, TreeNode* right) {
 	return node;
 }
 
-void makeTree(TreeNode* p) {
+void makeTree(TreeNode *p) {
 	if (p != NULL) {
-		element id, l, r;
-		scanf("%d %d %d", &id, &l, &r);
+		element id, left, right;
+		scanf("%d %d %d", &id, &left, &right);
+		p->id = id;
 
+		if (left != 0) {
+			p->left = makeNode(left, NULL, NULL);
+			makeTree(p->left);
+		}
+		if (right != 0) {
+			p->right = makeNode(right, NULL, NULL);
+			makeTree(p->right);
+		}
 	}
 }
 
@@ -36,7 +45,11 @@ void preOrder(TreeNode* root) {
 }
 
 int main() {
-	
+	int n;
+	TreeNode* root = makeNode(0, NULL, NULL);
 
+	scanf("%d", &n);
+	makeTree(root);
+	
 	return 0;
 }
