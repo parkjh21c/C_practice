@@ -1,5 +1,6 @@
 #pragma warning(disable:4996)
 #include <stdio.h>
+#include <string.h>
 #include <stdlib.h>
 
 typedef int element;
@@ -36,11 +37,39 @@ void makeTree(TreeNode *p) {
 	}
 }
 
-void preOrder(TreeNode* root) {
-	if (root != NULL) {
-		printf("[%d] ", root->id);
-		preOrder(root->left);
-		preOrder(root->right);
+void searching(TreeNode* root, char ch[]) {
+	TreeNode* p = root;
+	element s[100];
+	int len = 0;
+	
+	s[len] = p->id;
+	len++;
+
+	for (int i = 0; i < strlen(ch); i++) {
+		if (ch[i] == 'L') {
+			p = p->left;
+			if (p == NULL) {
+				len = -1;
+				break;
+			}
+			s[len] = p->id;
+			len++;
+		}
+		else if (ch[i] == 'R'){
+			p = p->right;
+			if (p == NULL) {
+				len = -1;
+				break;
+			}
+			s[len] = p->id;
+			len++;
+		}
+	}
+
+	if (len >= 0) {
+		for (int i = 0; i < len; i++)
+			printf(" %d", s[i]);
+		printf("\n");
 	}
 }
 
@@ -51,5 +80,15 @@ int main() {
 	scanf("%d", &n);
 	makeTree(root);
 	
+	int m;
+	char ch[101];
+	scanf("%d", &m);
+
+	for (int i = 0; i < m; i++) {
+		scanf("%s", ch);
+		searching(root, ch);
+	}
+	
+
 	return 0;
 }
