@@ -31,13 +31,12 @@ void downHeap(int i) {
 	int tmp, bigger;
 
 	bigger = 2 * i;
-	if (bigger >= n)
+	if (bigger > n)
 		return;
 	else if (H[bigger] <= H[i] && H[bigger + 1] <= H[i])
 		return;
-	else if (bigger + 1 <= n)
-		if (H[bigger + 1] > H[bigger])
-			bigger += 1;
+	else if (bigger + 1 <= n && H[bigger + 1] > H[bigger])
+		bigger += 1;
 
 	tmp = H[i];
 	H[i] = H[bigger];
