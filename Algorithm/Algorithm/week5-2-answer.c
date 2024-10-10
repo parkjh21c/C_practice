@@ -3,11 +3,11 @@
 #include <stdlib.h>
 #include <time.h>
 
-int inPlacePartition(int* arr, int left, int right, int pivot_index) {
-    int pivot_value = arr[pivot_index];
+int inPlacePartition(int* arr, int left, int right, int k) {
+    int pivot_value = arr[k];
     int temp;
-    temp = arr[pivot_index];
-    arr[pivot_index] = arr[right];
+    temp = arr[k];
+    arr[k] = arr[right];
     arr[right] = temp;
 
     int store_index = left;
@@ -35,10 +35,10 @@ int findPivot(int left, int right) {
 void inPlaceQuickSort(int* arr, int left, int right) {
     if (left < right) {
         int k = findPivot(left, right);
-        int pivot_new_index = inPlacePartition(arr, left, right, k);
+        int a = inPlacePartition(arr, left, right, k);
 
-        inPlaceQuickSort(arr, left, pivot_new_index - 1);
-        inPlaceQuickSort(arr, pivot_new_index + 1, right);
+        inPlaceQuickSort(arr, left, a - 1);
+        inPlaceQuickSort(arr, a + 1, right);
     }
 }
 
