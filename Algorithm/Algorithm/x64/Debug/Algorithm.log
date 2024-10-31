@@ -1,5 +1,1 @@
-﻿  assignment1.c
-C:\Users\qkrwl\C_practice\Algorithm\Algorithm\assignment1.c(59,8): warning C4244: '함수': 'time_t'에서 'unsigned int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\qkrwl\C_practice\Algorithm\Algorithm\assignment1.c(44): warning C4716: 'findKthSmallest': 값을 반환해야 합니다.
-C:\Users\qkrwl\C_practice\Algorithm\Algorithm\assignment1.c(54): warning C4172: 지역 변수 또는 임시: L의 주소를 반환하고 있습니다.
-  Algorithm.vcxproj -> C:\Users\qkrwl\C_practice\Algorithm\x64\Debug\Algorithm.exe
+﻿  Algorithm.vcxproj -> C:\Users\qkrwl\C_practice\Algorithm\x64\Debug\Algorithm.exe

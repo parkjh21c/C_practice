@@ -66,6 +66,9 @@
     <ClCompile Include="week7-2.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="assignment1-linkedlist_fail.c">
+      <Filter>소스 파일\assignment</Filter>
+    </ClCompile>
     <ClCompile Include="assignment1.c">
       <Filter>소스 파일\assignment</Filter>
     </ClCompile>

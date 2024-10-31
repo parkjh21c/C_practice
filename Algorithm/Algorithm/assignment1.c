@@ -1,57 +1,67 @@
-#pragma warning(disable:4996)
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-
-typedef struct Node {
-	struct Node* next;
-	int data;
-}Node;
+#include <Windows.h>
 
 typedef struct List {
-	Node* head;
-	Node* tail;
+	int* data;
 	int count;
-}List;
+} List;
 
-void init(List* L) {
-	L->head = NULL;
-	L->tail = NULL;
+void init(List* L, int n) {
+	L->data = (int*)malloc(sizeof(int) * n);
 	L->count = 0;
 }
 
 void addNode(List* L, int data) {
-	Node* node = (Node*)malloc(sizeof(Node));
-	node->next = NULL;
-	node->data = data;
+	L->data[L->count++] = data;
+}
 
-	if (L->head == NULL) {
-		L->head = L->tail = node;
-		L->count += 1;
-	}
-	else {
-		Node* p = L->head;
-		for (; p != L->tail; p = p->next);
+// 힙 생성 함수
+void minHeapify(int* heap, int n, int i) {
+	int smallest = i;
+	int left = 2 * i + 1;
+	int right = 2 * i + 2;
 
-		p->next = node;
-		L->tail = node;
-		L->count += 1;
+	if (left < n && heap[left] < heap[smallest])
+		smallest = left;
+	if (right < n && heap[right] < heap[smallest])
+		smallest = right;
+	if (smallest != i) {
+		int temp = heap[i];
+		heap[i] = heap[smallest];
+		heap[smallest] = temp;
+		minHeapify(heap, n, smallest);
 	}
 }
 
-int findKthSmallest(List *L, int n, int k) {
+void buildMinHeap(int* heap, int n) {
+	for (int i = n / 2 - 1; i >= 0; i--)
+		minHeapify(heap, n, i);
+}
 
+// k번째 작은 원소 찾기
+int findKthSmallest(List* L, int n, int k) {
+	buildMinHeap(L->data, n);
+
+	int result;
+	for (int i = 0; i < k; i++) {
+		result = L->data[0];
+		L->data[0] = L->data[n - 1];
+		n--;
+		minHeapify(L->data, n, 0);
+	}
+	return result;
 }
 
 List* buildList(int n, int min, int max) {
-	List L;
-	init(&L);
+	List* L = (List*)malloc(sizeof(List));
+	init(L, n);
 	for (int i = 0; i < n; i++) {
 		int d = rand() % (max - min + 1) + min;
-		addNode(&L, d);
+		addNode(L, d);
 	}
-
-	return &L;
+	return L;
 }
 
 int main() {
@@ -59,11 +69,32 @@ int main() {
 	srand(time(NULL));
 	L = buildList(10, 1, 100);
 
-	// 임시 확인
-	Node* p = L->head;
 	for (int i = 0; i < 10; i++) {
-		printf(" %d", p->data);
-		p = p->next;
+		printf(" %d", L->data[i]);
+	}
+	printf("\n");
+
+	int output[4];
+	for (int k = 1; k <= 3; k++)
+		output[k] = findKthSmallest(L, 10, k);
+
+	printf("%d %d %d\n", output[1], output[2], output[3]);
+
+	L = buildList(100000, 1, 1000000);
+
+	int k[4] = { 1, 100, 99900, 99999 };
+
+	for (int i = 0; i < 4; i++) {
+		LARGE_INTEGER ticksPerSec;
+		LARGE_INTEGER start, end, diff;
+
+		QueryPerformanceFrequency(&ticksPerSec);
+		QueryPerformanceCounter(&start);
+		int e = findKthSmallest(L, 100000, k[i]);
+		QueryPerformanceCounter(&end);
+		diff.QuadPart = end.QuadPart - start.QuadPart;
+		double t = (double)diff.QuadPart / (double)ticksPerSec.QuadPart;
+		printf("%d %.12f\n", e, t);
 	}
 
 	return 0;
