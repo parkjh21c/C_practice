@@ -9,12 +9,13 @@ typedef struct List {
 } List;
 
 void init(List* L, int n) {
-	L->data = (int*)malloc(sizeof(int) * n);
+	L->data = (int*)malloc(n * sizeof(int));
 	L->count = 0;
 }
 
 void addNode(List* L, int data) {
-	L->data[L->count++] = data;
+	L->data[L->count] = data;
+	L->count++;
 }
 
 // 힙 생성 함수
