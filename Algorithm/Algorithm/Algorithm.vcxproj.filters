@@ -81,11 +81,11 @@
     <ClCompile Include="week9-2.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="wwk.c">
-      <Filter>소스 파일\assignment</Filter>
-    </ClCompile>
     <ClCompile Include="week9-3.c">
       <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="assignment3.c">
+      <Filter>소스 파일\assignment</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
