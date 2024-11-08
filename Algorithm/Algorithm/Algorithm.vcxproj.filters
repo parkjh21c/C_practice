@@ -87,5 +87,11 @@
     <ClCompile Include="assignment3.c">
       <Filter>소스 파일\assignment</Filter>
     </ClCompile>
+    <ClCompile Include="week10-1.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="week10-2.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
