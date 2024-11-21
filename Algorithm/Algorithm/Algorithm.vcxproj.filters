@@ -99,5 +99,8 @@
     <ClCompile Include="week11-2.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="week12-1.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
