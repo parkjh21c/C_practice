@@ -1,57 +1,70 @@
-#pragma warning(disable: 4996)
+#pragma warning(disable:4996)
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct GraphNode {
+typedef struct node {
+	struct node* next;
+	int index;
+}node;
+
+typedef struct vertex {
 	char vertex;
-	struct GraphNode* outEdges;
-	struct GraphNode* inEdges;
+	struct node* outEdges;
+	struct node* inEdges;
 	int inDegree;
-}GraphNode;
+}vertex;
 
+typedef struct edge {
+	int a, b, id;
+}edge;
+
+typedef struct graph {
+	vertex* vertices;
+	edge* edges;
+}graph;
+
+typedef struct Queue {
+	int front;
+	int rear;
+	int* queue;
+}Queue;
+
+graph G;
+Queue Q;
 int n, m;
-GraphNode** G;
+int* topOrder;	// n+1Å©±â
 
-void initializeGraph() {
-	G = (GraphNode**)malloc(n * sizeof(GraphNode*));
-	for (int i = 0; i < n; i++)
-		G[i] = (GraphNode*)malloc(m * sizeof(GraphNode));
+node* makeNode(int index) {
+	node* new_node = (node*)malloc(sizeof(node));
+	new_node->next = NULL;
+	new_node->index = index;
+	return new_node;
 }
 
-void insertVertex(char vertex, int i) {
-	G[i]->vertex = vertex;
-	G[i]->outEdges = NULL;
-	G[i]->inEdges = NULL;
-	G[i]->inDegree = 0;
+void initializeGraph() {
+	G.vertices = (vertex*)malloc(n * sizeof(vertex));
+	topOrder = (int*)malloc((n + 1) * sizeof(int));
+	Q.queue = (int*)malloc(n * sizeof(int));
 }
 
 void buildGraph() {
+	scanf("%d", &n); 
 	initializeGraph();
-	scanf("%d", &n);
 
 	for (int i = 0; i < n; i++) {
-		char vertex;
-		scanf("%c", &vertex); getchar();
-		insertVertex(vertex, i);
+		char vName;
+		scanf("%c", &vName); getchar();
+		insertVertex(vName, i);
 	}
-}
-
-void topologicalSort() {
-
 }
 
 int main() {
-	
-	buildGraph();
 
+	buildGraph();
+	
 	topologicalSort();
 
-	scanf("%d", &l);
-
-	for (int i = 0; i < l; i++) {
-		char v1, v2;
-		scanf("%c %c", &v1, &v2); getchar();
-	}
+	if (topOrder[0] == 0)
 
 	return 0;
 }
