@@ -9,15 +9,14 @@ typedef struct node {
 
 typedef struct vertex {
 	char vertex;
-	struct node* outEdges;
-	struct node* inEdges;
+	node* outEdges;
+	node* inEdges;
 	int inDegree;
 }vertex;
 
 typedef struct edge {
 	int origin;
 	int destination;
-	int id;
 }edge;
 
 typedef struct graph {
@@ -46,11 +45,11 @@ node* makeNode(int index) {
 
 void initQueue() {
 	Q.front = 0;
-	Q.rear = 0;
+	Q.rear = n - 1;
 }
 
 int isEmpty() {
-	return Q.front == Q.rear;
+	return Q.front == (Q.rear + 1) % n;
 }
 
 void enqueue(int i) {
@@ -78,7 +77,7 @@ void initializeGraph() {
 	G.vertices = (vertex*)malloc((n + 1) * sizeof(vertex));
 	topOrder = (int*)malloc((n + 1) * sizeof(int));
 	Q.queue = (int*)malloc(n * sizeof(int));
-	in = (int*)malloc(n * sizeof(int));
+	in = (int*)malloc((n + 1) * sizeof(int));
 }
 
 void insertVertex(char vName, int i) {
@@ -89,7 +88,7 @@ void insertVertex(char vName, int i) {
 }
 
 int index(char vName) {
-	for (int i = 0; i < n; i++) {
+	for (int i = 1; i <= n; i++) {
 		if (G.vertices[i].vertex == vName)
 			return i;
 	}
@@ -111,21 +110,21 @@ void insertDirectedEdge(char uName, char wName, int i) {
 }
 
 void buildGraph() {
-	scanf("%d", &n); 
+	scanf("%d", &n); getchar();
 	initializeGraph();
 
-	for (int i = 0; i < n; i++) {
+	for (int i = 1; i <= n; i++) {
 		char vName;
-		scanf(" %c", &vName);
+		scanf("%c", &vName); getchar();
 		insertVertex(vName, i);
 	}
 
-	scanf("%d", &m);
+	scanf("%d", &m); getchar();
 	G.edges = (edge*)malloc(m * sizeof(edge));
 
 	for (int i = 0; i < m; i++) {
 		char uName, wName;
-		scanf(" %c %c", &uName, &wName);
+		scanf("%c %c", &uName, &wName); getchar();
 		insertDirectedEdge(uName, wName, i);
 	}
 }
@@ -133,7 +132,7 @@ void buildGraph() {
 void topologicalSort() {
 	initQueue();
 
-	for (int i = 0; i < n; i++) {
+	for (int i = 1; i <= n; i++) {
 		in[i] = G.vertices[i].inDegree;
 		if (in[i] == 0)
 			enqueue(i);
