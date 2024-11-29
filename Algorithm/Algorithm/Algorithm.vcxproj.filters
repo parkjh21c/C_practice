@@ -105,5 +105,11 @@
     <ClCompile Include="assignment4.c">
       <Filter>소스 파일\assignment</Filter>
     </ClCompile>
+    <ClCompile Include="week13-1.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="week13-2.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
